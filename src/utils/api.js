@@ -7,5 +7,5 @@ const gamesApi = axios.create({
 export const getUsers = () => {
   return gamesApi.get(`/users`).then(res => res.data.users)}
 
-export const getUserByName = (name) => {
-  return gamesApi.get(`/users/${name}`).then(res => res.data.user)}
+export const getUserByUserName = (username) => {
+  return gamesApi.get(`/users/${username}`).then(res => res.data.user)}
