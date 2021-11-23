@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { UserContext } from '../contexts/user'
+import { UserContext } from '../contexts/UserContext'
 import Nav from './Nav'
 
 const UserProfile = () => {

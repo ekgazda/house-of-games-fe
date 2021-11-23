@@ -1,16 +1,14 @@
 import './App.css'
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { UserContext } from './contexts/user'
 import Home from './components/Home'
 import UserProfile from './components/UserProfile.js'
+import { UserProvider } from './contexts/UserContext'
 
 function App() {
-  const [currentUser, setCurrentUser] = useState([])
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <UserProvider>
       <div className='App'>
         <header className='App-header'>
           <h2>House of Games</h2>
@@ -20,7 +18,7 @@ function App() {
           <Route path='/my-account' element={<UserProfile />} />
         </Routes>
       </div>
-      </UserContext.Provider>
+      </UserProvider>
     </BrowserRouter>
   )
 }

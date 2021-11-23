@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { UserContext } from '../contexts/user'
+import { UserContext } from '../contexts/UserContext'
 import { getUsers } from '../utils/api'
 
 const Home = () => {
