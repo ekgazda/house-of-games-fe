@@ -1,18 +1,8 @@
-import { useState, useEffect } from 'react'
-import { getReviews } from '../utils/api'
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
 import Categories from './Categories'
 
-const Reviews = () => {
-  const [reviews, setReviews] = useState([])
-
-  useEffect(() => {
-    getReviews().then((reviews) => {
-      setReviews(reviews)
-    })
-  }, [])
-
+const Reviews = ({reviews}) => {
   return (
     <>
       <Nav />
