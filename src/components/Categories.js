@@ -9,27 +9,26 @@ const Categories = () => {
     getCategories().then((categories) => {
       setCategories(categories)
     })
-  }, []) 
+  }, [])
 
   return (
     <div className="Categories">
-      <h4>Filter by category:</h4>
-      <ul>
-        {categories.map(category => {
+      <p>Filter by category:</p>
+      <>
+        {categories.map((category) => {
           return (
-            <span key={category.slug}>
-              <Link to={`/reviews/categories/${category.slug}`} className='Categories_link'>
-                <h5>{category.slug}</h5>
-              </Link>
-            </span>
-            )})}
-      </ul>
-    </div>  
+            <Link
+              key={category.slug}
+              to={`/reviews/categories/${category.slug}`}
+              className="Categories_link"
+            >
+              <>{category.slug}</>
+            </Link>
+          )
+        })}
+      </>
+    </div>
   )
 }
 
 export default Categories
-
-
-
-

@@ -25,10 +25,20 @@ const Home = () => {
   return (
     <>
       <h3>Please select a user to enter</h3>
-      <select onChange={handleChange} name="selectUser" id="selectUser">
-        <option selected value="select user" disabled></option>
+      <select
+        onChange={handleChange}
+        id="selectUser"
+        defaultValue={'defaultUser'}
+      >
+        <option key="defaultUser" value="defaultUser" disabled>
+          users:
+        </option>
         {users.map((user) => {
-          return <option value={user.username}>{user.username}</option>
+          return (
+            <option key={user.username} value={user.username}>
+              {user.username}
+            </option>
+          )
         })}
       </select>
       {selectUser && <button onClick={goToProfile}>Enter</button>}
