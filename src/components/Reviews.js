@@ -21,7 +21,7 @@ const Reviews = () => {
         {reviews.map((review) => {
           return (
             <div className="ReviewCard">
-              <p>title: {review.title}</p>
+              <p><b>{review.title}</b></p>
               <p>category: {review.category}</p>
               <img
                 src={review.review_img_url}

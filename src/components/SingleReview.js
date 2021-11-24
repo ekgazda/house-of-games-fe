@@ -18,11 +18,11 @@ const SingleReview = () => {
       <Nav />
       <div className="SingleReview">
         <div className="SingleReview">
-          <p>title: {review.title}</p>
+          <p><b>{review.title}</b></p>
           <p>designer: {review.designer}</p>
           <p>category: {review.category}</p>
           <img src={review.review_img_url} alt="Review" className="ReviewImg" />
-          <p>review: {review.review_body}</p>
+          <p>{review.review_body}</p>
           <p>posted: {review.created_at}</p>
           <p>author: {review.owner}</p>
           <p>votes: {review.votes}</p>

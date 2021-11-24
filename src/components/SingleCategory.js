@@ -22,7 +22,7 @@ const SingleCategory = () => {
         {filteredReviews.map((review) => {
           return (
             <div className="ReviewCard">
-              <p>title: {review.title}</p>
+              <p><b>{review.title}</b></p>
               <p>designer: {review.designer}</p>
               <p>category: {review.category}</p>
               <img src={review.review_img_url} alt="Review" className="ReviewImg" />
