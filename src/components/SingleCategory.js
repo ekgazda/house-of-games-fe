@@ -1,8 +1,9 @@
 import { getReviewByCategory } from '../utils/api'
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Nav from './Nav'
 import Categories from './Categories'
+import ReviewCard from './ReviewCard'
 
 const SingleCategory = () => {
   const { slug } = useParams()
@@ -18,21 +19,9 @@ const SingleCategory = () => {
     <>
       <Nav />
       <Categories />
-      <div>
+      <div className="Reviews">
         {filteredReviews.map((review) => {
-          return (
-            <div className="ReviewCard">
-              <p><b>{review.title}</b></p>
-              <p>designer: {review.designer}</p>
-              <p>category: {review.category}</p>
-              <img src={review.review_img_url} alt="Review" className="ReviewImg" />
-              <p>votes: {review.votes}</p>
-              <p>comments: {review.comment_count}</p>
-              <Link to={`/reviews/${review.review_id}`} className="ReadMore">
-                Read more...
-              </Link>
-            </div>
-          )
+          return <ReviewCard key={review.review_id} {...review} />
         })}
       </div>
     </>

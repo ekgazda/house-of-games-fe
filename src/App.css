@@ -60,7 +60,10 @@
 }
 
 .Reviews {
-  grid-area: main;
+  display: flex;
+  border: black 1px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .ReviewImg {
@@ -70,14 +73,21 @@
 }
 
 .ReviewCard {
-  border: 2px solid black;
-  max-width: 40%;
-  min-width: 300px;
-  max-height: 400px;
-  padding: 10px;
-  display: grid center;
-  margin: 10px;
-  
+  border: 1px solid black;
+  max-width: 20%;
+  min-width: 260px;
+  max-height: 260px;
+  padding: 15px 15px 25px 15px;
+  background-color: whitesmoke;
+  position: center;
+  margin: 5%;
+  vertical-align: auto;
+  word-wrap: break-word;
+}
+
+li {
+  list-style-type: none;
+  line-height: 2;
 }
 
 .Categories_link {
@@ -90,4 +100,32 @@
   text-decoration: none;
   color:silver;
   font-size: 14px;
+}
+
+.CommentCard {
+  border: 1px solid black;
+  background-color: whitesmoke;
+}
+
+button {
+  background-color: silver;
+  color: black;
+  border: none;
+  padding: 6px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: rgb(220, 218, 218);
+  color: black;
+  border: none;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+.ReadMore {
+  text-decoration: none;
+  color: rgb(101, 37, 48);
+  font-weight: bold;
 }

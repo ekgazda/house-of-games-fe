@@ -1,34 +1,19 @@
-import { Link } from 'react-router-dom'
 import Nav from './Nav'
 import Categories from './Categories'
+import ReviewCard from './ReviewCard'
 
 const Reviews = ({reviews}) => {
   return (
-    <>
+      <>
       <Nav />
       <Categories />
-      <div className="Reviews">
-        {reviews.map((review) => {
-          return (
-            <div className="ReviewCard">
-              <p><b>{review.title}</b></p>
-              <p>category: {review.category}</p>
-              <img
-                src={review.review_img_url}
-                alt="Review"
-                className="ReviewImg"
-              ></img>
-              <p>votes: {review.votes}</p>
-              <p>comments: {review.comment_count}</p>
-              <Link to={`/reviews/${review.review_id}`} className="ReadMore">
-                Read more...
-              </Link>
-            </div>
-          )
-        })}
+      <div className='Reviews'>
+      {reviews.map(review => {
+        return <ReviewCard key={review.review_id} {...review} />
+      })}
       </div>
-    </>
-  )
+      </>
+  )    
 }
 
 export default Reviews
