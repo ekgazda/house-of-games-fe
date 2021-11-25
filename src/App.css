@@ -24,6 +24,19 @@
 .App-link {
   color: #471472;
 }
+
+.UserSelector {
+ color: rgb(125, 125, 125);
+ font-style: italic;
+ font-family: 'Roboto', sans-serif;
+}
+
+ /* {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  color: black;
+} */
+
 .Nav {
   grid-area: nav;
 }
@@ -62,6 +75,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ReviewImg {

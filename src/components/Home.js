@@ -27,10 +27,10 @@ const Home = () => {
       <h3>Please select a user to enter</h3>
       <select
         onChange={handleChange}
-        id="selectUser"
+        className='UserSelector'
         defaultValue={'defaultUser'}
       >
-        <option key="defaultUser" value="defaultUser" disabled>
+        <option key="defaultUser" value="defaultUser" disabled >
           users:
         </option>
         {users.map((user) => {
@@ -41,7 +41,7 @@ const Home = () => {
           )
         })}
       </select>
-      {selectUser && <button onClick={goToProfile}>Enter</button>}
+      {selectUser && <button onClick={goToProfile}>Log in</button>}
       {redir && <Navigate to={'/my-account'} replace />}
     </>
   )
