@@ -37,12 +37,35 @@ const SortReviews = () => {
     <>
       <Nav />
       <Categories />
-      <div className="sortBy"> Sort by:
-        {sortByOptions.map(option => <Link onClick={() => updateSortBy(option)} to={`/reviews/sortby/${option}/${order}`} key={option} className={`Sort_link ${sortBy === option ? 'active' : ''}`}>{option}</Link>)} 
+      <div className="sortBy">
+        {' '}
+        Sort by:
+        {sortByOptions.map((option) => (
+          <Link
+            onClick={() => updateSortBy(option)}
+            to={`/reviews/sortby/${option}/${order}`}
+            key={option}
+            className={`Sort_link ${sortBy === option ? 'active' : ''}`}
+          >
+            {option}
+          </Link>
+        ))}
       </div>
       <div>
-        <Link onClick={() => updateOrder("asc")} to={`/reviews/sortby/${sortBy}/asc`} className={`Order_link ${order === "asc" && 'active'}`}>asc</Link>
-        <Link onClick={() => updateOrder("desc")} to={`/reviews/sortby/${sortBy}/desc`} className={`Order_link ${order === "desc" && 'active'}`}>desc</Link>
+        <Link
+          onClick={() => updateOrder('asc')}
+          to={`/reviews/sortby/${sortBy}/asc`}
+          className={`Order_link ${order === 'asc' && 'active'}`}
+        >
+          asc
+        </Link>
+        <Link
+          onClick={() => updateOrder('desc')}
+          to={`/reviews/sortby/${sortBy}/desc`}
+          className={`Order_link ${order === 'desc' && 'active'}`}
+        >
+          desc
+        </Link>
       </div>
       <div className="Reviews">
         {sortedReviews.map((review) => {
