@@ -23,7 +23,7 @@ const Home = () => {
   const goToProfile = () => setRedir(true)
 
   return (
-    <>
+    <main className='Home'>
       <h3>Please select a user to enter</h3>
       <select
         onChange={handleChange}
@@ -43,7 +43,7 @@ const Home = () => {
       </select>
       {selectUser && <button onClick={goToProfile}>Log in</button>}
       {redir && <Navigate to={'/my-account'} replace />}
-    </>
+    </main>
   )
 }
 

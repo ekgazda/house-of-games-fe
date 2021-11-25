@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  font-size: 13px;
+  font-size: 13.5px;
   grid-template-columns: 100%;
   grid-template-rows: min-content min-content auto;
   grid-template-areas: 'header' 'nav' 'main';
@@ -25,17 +25,19 @@
   color: #471472;
 }
 
+#errorPage {
+  padding: 70px;
+}
+
+.Home {
+  margin-top: 70px;
+}
+
 .UserSelector {
  color: rgb(125, 125, 125);
  font-style: italic;
  font-family: 'Roboto', sans-serif;
 }
-
- /* {
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  color: black;
-} */
 
 .Nav {
   grid-area: nav;
@@ -49,7 +51,7 @@
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 13.5px;
 }
 
 .Nav_link:hover {
@@ -57,10 +59,13 @@
   border-radius: 10px;
   padding: 5px;
   margin: 10px;
-  font-family: Arial, Helvetica, sans-serif;
   color: white;
   text-decoration: none;
   font-weight: bold;
+}
+
+.UserProfile {
+  margin-top: 70px;
 }
 
 .Avatar {
@@ -109,18 +114,19 @@
 
 li {
   list-style-type: none;
-  line-height: 2;
+  line-height: 1.8;
+  font-size: 14px
 }
 
 .Categories {
   text-align: auto;
-  margin: 30px;
+  margin: 70px 30px 30px 30px;
 }
 
 .Categories_link {
   text-decoration: none;
   color: rgb(108, 108, 108);
-  font-size: 12px;
+  font-size: 12.5px;
   line-height: 1.5;
   padding: 12px;
   text-transform:uppercase;
@@ -132,13 +138,54 @@ li {
   font-size: 12.5px;
 }
 
+.sortBy {
+  font-size: 12.5px;
+}
+
+.Sort_link {
+  text-decoration: none;
+  color: rgb(108, 108, 108);
+  font-size: 12.5px;
+  line-height: 1.5;
+  padding: 12px;
+  text-transform:uppercase;
+}
+
+.Sort_link:hover, .Sort_link.active {
+  text-decoration: none;
+  color:rgb(31, 31, 31);
+  font-size: 12.5px;
+  font-weight: bold;
+}
+
+.Order_link {
+  text-decoration: none;
+  color: rgb(108, 108, 108);
+  font-size: 12.5px;
+  line-height: 1.5;
+  padding: 12px;
+  text-transform:uppercase;
+}
+
+.Order_link:hover, .Order_link.active {
+  text-decoration: none;
+  color:rgb(0, 0, 0);
+  font-size: 12.5px;
+  font-weight: bold;
+}
+
 .SingleReview {
   display: flex;
-  padding: 10px;
+  padding: 60px 10px 10px 10px;
   justify-content: center;
   flex-direction: column;
   max-width: 700px;
   margin: auto;
+  font-size: 14px;
+}
+
+#reviewTitle {
+  font-size: 16px;
 }
 
 .CommentCard {
@@ -189,4 +236,5 @@ textarea {
   text-align: left;
   border-color: silver;
   border-radius: 2px;
+  padding: 5px 0 0 5px;
 }

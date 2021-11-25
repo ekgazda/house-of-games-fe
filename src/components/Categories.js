@@ -13,7 +13,7 @@ const Categories = () => {
 
   return (
     <div className="Categories">
-      <p>Filter by category:</p>
+      <>Filter by category:</>
       <>
         {categories.map((category) => {
           return (

@@ -14,7 +14,7 @@ const SingleReview = () => {
   useEffect(() => {
     getReviewById(id).then((review) => {
       setReview(review)
-    })
+    }).catch(err => err.body.msg)
   }, [id])
 
   return (
@@ -22,14 +22,14 @@ const SingleReview = () => {
       <Nav />
       <div className="SingleReview">
         <p>
-          <b>{review.title}</b>
+          <b id='reviewTitle'>{review.title}</b>
         </p>
-        <p><i>designer:</i> {review.designer}</p>
-        <p><i>category:</i> {review.category}</p>
+        <p><i>DESIGNER:</i> {review.designer}</p>
+        <p><i>CATEGORY:</i> {review.category}</p>
         <img src={review.review_img_url} alt="Review" className="ReviewImg" />
         <p>{review.review_body}</p>
-        <p><i>posted:</i> {moment(review.created_at).format("YYYY-MM-DD HH:mm")}</p>
-        <p><i>author:</i> {review.owner}</p>
+        <p><i>POSTED:</i> {moment(review.created_at).format("YYYY-MM-DD HH:mm")}</p>
+        <p><i>AUTHOR:</i> {review.owner}</p>
         <p><Voter reviewId={review.review_id} votes={review.votes} author={review.owner}/> {' '}
         </p>
       </div>

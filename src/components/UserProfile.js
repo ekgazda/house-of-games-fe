@@ -17,6 +17,7 @@ const UserProfile = ({ reviews }) => {
   return (
     <>
       <Nav />
+      <main className='UserProfile'>
       <h3>Hello {userDetails.name}!</h3>
       <img src={userDetails.avatar_url} alt="Avatar" className="Avatar"></img>
       <h3>My reviews:</h3>
@@ -27,6 +28,7 @@ const UserProfile = ({ reviews }) => {
             return <ReviewCard key={review.review_id} {...review} />
           })}
       </div>
+      </main>
     </>
   )
 }
