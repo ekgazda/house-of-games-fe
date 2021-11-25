@@ -1,9 +1,11 @@
 import { getReviewById } from '../utils/api'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import moment from 'moment'
 import Nav from './Nav'
 import Comments from './Comments'
-import moment from 'moment'
+import Voter from './Voter'
+
 
 const SingleReview = () => {
   const { id } = useParams()
@@ -28,9 +30,7 @@ const SingleReview = () => {
         <p>{review.review_body}</p>
         <p><i>posted:</i> {moment(review.created_at).format("YYYY-MM-DD HH:mm")}</p>
         <p><i>author:</i> {review.owner}</p>
-        <p>
-        <i>votes:</i> {review.votes} <button className="VoteBtn">Vote up</button>{' '}
-          <button className="VoteBtn">Vote down</button>{' '}
+        <p><Voter reviewId={review.review_id} votes={review.votes} author={review.owner}/> {' '}
         </p>
       </div>
       <Comments />

@@ -12,6 +12,8 @@ export const getReviews = () => gamesApi.get(`/reviews`).then(res => res.data.re
 
 export const getReviewById = (id) => gamesApi.get(`/reviews/${id}`).then(res => res.data.review)
 
+export const updateVotesOnReviewById = (id, vote) => gamesApi.patch(`/reviews/${id}`, {inc_votes: vote}).then(res => res.data.review)
+
 export const getCategories = () => gamesApi.get(`/categories`).then(res => res.data.categories)
 
 export const getReviewByCategory = (slug) => gamesApi.get(`/reviews?category=${slug}`).then(res => res.data.reviews)
