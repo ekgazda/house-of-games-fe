@@ -1,19 +1,17 @@
-import Nav from './Nav'
-import Categories from './Categories'
 import ReviewCard from './ReviewCard'
+import SortReviews from './SortReviews'
 
-const Reviews = ({reviews}) => {
+const Reviews = ({ reviews }) => {
   return (
-      <>
-      <Nav />
-      <Categories />
-      <div className='Reviews'>
-      {reviews.map(review => {
-        return <ReviewCard key={review.review_id} {...review} />
-      })}
+    <>
+      <SortReviews />
+      <div className="Reviews">
+        {reviews.map((review) => {
+          return <ReviewCard key={review.review_id} {...review} />
+        })}
       </div>
-      </>
-  )    
+    </>
+  )
 }
 
 export default Reviews
