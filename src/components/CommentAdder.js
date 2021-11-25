@@ -6,15 +6,15 @@ import { UserContext } from '../contexts/UserContext'
 const CommentAdder = ({ commentAdded }) => {
   const { id } = useParams()
   const { currentUser } = useContext(UserContext)
-  let [newComment, setNewComment] = useState('')
+  const [newComment, setNewComment] = useState('')
 
   const getComment = (event) => setNewComment(event.target.value)
 
-  const postComment = async () => {
-    const newComm = await postCommentToReviewById(id, newComment, currentUser)
-    commentAdded()
-    setNewComment('')
-    return newComm
+  const postComment = () => {
+    postCommentToReviewById(id, newComment, currentUser).then(() => {
+      commentAdded()
+      setNewComment('')
+    })
   }
 
   return (
