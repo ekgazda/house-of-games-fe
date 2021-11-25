@@ -6,26 +6,29 @@ import { UserContext } from '../contexts/UserContext'
 const CommentAdder = ({ commentAdded }) => {
   const { id } = useParams()
   const { currentUser } = useContext(UserContext)
-  const [newComment, setNewComment] = useState('');
+  let [newComment, setNewComment] = useState('')
 
-  // useEffect(() => {
-  //   postCommentToReviewById(id).then((comment) => {
-  //     setAddComment(comment)
-  //   })
-  // }, [id])
-
-  const updateComment = (event) => setNewComment(event.target.value)
+  const getComment = (event) => setNewComment(event.target.value)
 
   const postComment = async () => {
     const newComm = await postCommentToReviewById(id, newComment, currentUser)
     commentAdded()
+    setNewComment('')
     return newComm
   }
 
   return (
-    <div className='CommentAdder'>
-      <textarea placeholder='Write your comment here...' onChange={updateComment} /> <br></br>
-      <button type='submit' onClick={postComment}>Post comment</button>
+    <div className="CommentAdder">
+      <textarea
+        placeholder="Write your comment here..."
+        value={newComment}
+        onChange={getComment}
+      />{' '}
+      <br></br>
+      <button type="submit" onClick={postComment}>
+        Post comment
+      </button>
+      Logged in as <b>{currentUser}</b>
     </div>
   )
 }

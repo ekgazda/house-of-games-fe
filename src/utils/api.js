@@ -19,3 +19,5 @@ export const getReviewByCategory = (slug) => gamesApi.get(`/reviews?category=${s
 export const getCommentsByReviewId = (id) => gamesApi.get(`/reviews/${id}/comments`).then(res => res.data.comments)
 
 export const postCommentToReviewById = (id, comment, user) => gamesApi.post(`/reviews/${id}/comments`, {username: user, body: comment, }).then(res => res.data.comment)
+
+export const deleteCommentById = (id) => gamesApi.delete(`/comments/${id}`).then(res => res.data.comment)
