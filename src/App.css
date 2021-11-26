@@ -132,7 +132,7 @@ li {
   text-transform:uppercase;
 }
 
-.Categories_link:hover {
+.Categories_link:hover, .Categories_link.active {
   text-decoration: none;
   color:rgb(31, 31, 31);
   font-size: 12.5px;
@@ -155,7 +155,7 @@ li {
   text-decoration: none;
   color:rgb(31, 31, 31);
   font-size: 12.5px;
-  font-weight: bold;
+  font-weight: 410;
 }
 
 .Order_link {
@@ -171,7 +171,7 @@ li {
   text-decoration: none;
   color:rgb(0, 0, 0);
   font-size: 12.5px;
-  font-weight: bold;
+  font-weight: 410;
 }
 
 .SingleReview {
