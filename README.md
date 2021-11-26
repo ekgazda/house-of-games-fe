@@ -5,9 +5,9 @@ Check out the hosted version here: https://eg-house-of-games.netlify.app/
 
 ## Project summary
 
-House of Games has boardgame reviews which are divided into categories and can be sorted. Users can check their own reviews, add or delete comments and vote on other user's reviews using my
+House of Games has boardgame reviews which are divided into categories and can be sorted. Users can check the reviews, add or delete comments and vote on other user's reviews using my
 [House of Games API](https://github.com/ekgazda/house-of-games-api).\
-It is built with [React](https://reactjs.org/), [Create React App](https://create-react-app.dev/) and [axios](https://axios-http.com/).
+It is a C.R.U.D application, built with [React](https://reactjs.org/), [Create React App](https://create-react-app.dev/) and [axios](https://axios-http.com/).
 
 ## Initial setup
 
@@ -24,7 +24,7 @@ Run this command to install dependencies:
 
 ## Instructions for use
 
-Run the local server
+Run the local dev server
 
 `npm start`
 
