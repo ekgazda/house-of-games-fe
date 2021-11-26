@@ -19,7 +19,7 @@ const ReviewCard = ({
       <li>comments: {comment_count}</li>
       <Link to={`/reviews/${review_id}`} className="ReadMore">
         {' '}
-        Read more...
+        READ MORE...
       </Link>
     </ul>
   )
