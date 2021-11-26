@@ -18,13 +18,11 @@ const Voter = ({reviewId, votes, author}) => {
     })
   }
 
-  const isDisabled = author === currentUser
-
   return (
     <>
       <i>votes:</i> {votes + addedVotes}
-      <button className="VoteBtn" onClick={addVotes} disabled={isDisabled}>Vote up</button>
-      <button className="VoteBtn" onClick={removeVotes} disabled={isDisabled}>Vote down</button>
+      {author !== currentUser && <button className="VoteBtn" onClick={addVotes}>Vote up</button>}
+      {author !== currentUser && <button className="VoteBtn" onClick={removeVotes}>Vote down</button>}
     </>
   )
 
