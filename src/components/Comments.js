@@ -18,7 +18,9 @@ const Comments = () => {
 
   useEffect(() => {
     updateComments()
+    // eslint-disable-next-line
   }, [id])
+  
 
   const deleteComment = (commentId) => {
     deleteCommentById(commentId).then((res) => {

@@ -17,7 +17,9 @@ const SortReviews = () => {
     getSortedReviews(sortBy, order).then((reviews) => {
       setSortedReviews(reviews)
     })
+    // eslint-disable-next-line
   }, [])
+
 
   const updateSortBy = (newSortBy) => {
     setSortBy(newSortBy)
