@@ -1,8 +1,7 @@
 import { getReviewByCategory } from '../utils/api'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import Nav from './Nav'
-import Categories from './Categories'
+import SortReviews from './SortReviews'
 import ReviewCard from './ReviewCard'
 
 const SingleCategory = () => {
@@ -17,8 +16,7 @@ const SingleCategory = () => {
 
   return (
     <>
-      <Nav />
-      <Categories />
+      <SortReviews />
       <div className="Reviews">
         {filteredReviews.map((review) => {
           return <ReviewCard key={review.review_id} {...review} />

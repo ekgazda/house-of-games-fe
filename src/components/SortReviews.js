@@ -8,8 +8,8 @@ import { getSortedReviews } from '../utils/api'
 const SortReviews = () => {
   const { sortByParam, orderParam } = useParams()
   const [sortedReviews, setSortedReviews] = useState([])
-  const [sortBy, setSortBy] = useState(sortByParam)
-  const [order, setOrder] = useState(orderParam)
+  const [sortBy, setSortBy] = useState(sortByParam ? sortByParam : 'created_at')
+  const [order, setOrder] = useState(orderParam ? orderParam : 'desc')
 
   const sortByOptions = ['created_at', 'comment_count', 'votes']
 
