@@ -1,15 +1,33 @@
 import { getCategories } from '../utils/api'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import ErrorPage from './ErrorPage'
 
 const Categories = () => {
   const [categories, setCategories] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [err, setErr] = useState(null)
 
   useEffect(() => {
-    getCategories().then((categories) => {
-      setCategories(categories)
-    })
+    setLoading(true)
+    getCategories()
+      .then((categories) => {
+        setLoading(false)
+        setCategories(categories)
+      })
+      .catch((err) => {
+        setLoading(false)
+        setErr(err.response)
+      })
   }, [])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  if (err) {
+    return <ErrorPage err={err} />
+  }
 
   return (
     <div className="Categories">

@@ -4,30 +4,53 @@ import { useParams } from 'react-router-dom'
 import moment from 'moment'
 import { UserContext } from '../contexts/UserContext'
 import CommentAdder from './CommentAdder'
+import ErrorPage from './ErrorPage'
 
 const Comments = () => {
   const { id } = useParams()
   const { currentUser } = useContext(UserContext)
   const [comments, setComments] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [err, setErr] = useState(null)
 
   const updateComments = () => {
-    getCommentsByReviewId(id).then((comments) => {
-      setComments(comments)
-    })
+    setLoading(true)
+    getCommentsByReviewId(id)
+      .then((comments) => {
+        setLoading(false)
+        setComments(comments)
+      })
+      .catch((err) => {
+        setLoading(false)
+        setErr(err.response)
+      })
   }
 
   useEffect(() => {
     updateComments()
-    // eslint-disable-next-line
-  }, [id])
-  
+  }, [id]) // eslint-disable-line
 
   const deleteComment = (commentId) => {
-    deleteCommentById(commentId).then((res) => {
-      setComments((prevComm) => {
-        return prevComm.filter((comment) => comment.comment_id !== commentId)
+    setLoading(true)
+    deleteCommentById(commentId)
+      .then((res) => {
+        setLoading(false)
+        setComments((prevComm) => {
+          return prevComm.filter((comment) => comment.comment_id !== commentId)
+        })
       })
-    })
+      .catch((err) => {
+        setLoading(false)
+        setErr(err.response)
+      })
+  }
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  if (err) {
+    return <ErrorPage err={err} />
   }
 
   return (

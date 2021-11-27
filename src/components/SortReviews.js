@@ -1,38 +1,67 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Nav from './Nav'
 import Categories from './Categories'
 import ReviewCard from './ReviewCard'
 import { getSortedReviews } from '../utils/api'
+import ErrorPage from './ErrorPage'
 
 const SortReviews = () => {
-  const { sortByParam, orderParam } = useParams()
   const [sortedReviews, setSortedReviews] = useState([])
-  const [sortBy, setSortBy] = useState(sortByParam ? sortByParam : 'created_at')
-  const [order, setOrder] = useState(orderParam ? orderParam : 'desc')
+  const [sortBy, setSortBy] = useState('created_at')
+  const [order, setOrder] = useState('desc')
+  const [loading, setLoading] = useState(true)
+  const [err, setErr] = useState(null)
 
   const sortByOptions = ['created_at', 'comment_count', 'votes']
 
   useEffect(() => {
-    getSortedReviews(sortBy, order).then((reviews) => {
-      setSortedReviews(reviews)
-    })
-    // eslint-disable-next-line
-  }, [])
+    setLoading(true)
+    getSortedReviews(sortBy, order)
+      .then((reviews) => {
+        setLoading(false)
+        setSortedReviews(reviews)
+      })
+      .catch((err) => {
+        setLoading(false)
+        setErr(err.response)
+      })
+  }, []) // eslint-disable-line
 
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  if (err) {
+    return <ErrorPage err={err} />
+  }
 
   const updateSortBy = (newSortBy) => {
+    setLoading(true)
     setSortBy(newSortBy)
-    getSortedReviews(newSortBy, order).then((reviews) => {
-      setSortedReviews(reviews)
-    })
+    getSortedReviews(newSortBy, order)
+      .then((reviews) => {
+        setLoading(false)
+        setSortedReviews(reviews)
+      })
+      .catch((err) => {
+        setLoading(false)
+        setErr(err.response)
+      })
   }
 
   const updateOrder = (newOrder) => {
+    setLoading(true)
     setOrder(newOrder)
-    getSortedReviews(sortBy, newOrder).then((reviews) => {
-      setSortedReviews(reviews)
-    })
+    getSortedReviews(sortBy, newOrder)
+      .then((reviews) => {
+        setLoading(false)
+        setSortedReviews(reviews)
+      })
+      .catch((err) => {
+        setLoading(false)
+        setErr(err.response)
+      })
   }
 
   return (

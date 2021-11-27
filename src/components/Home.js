@@ -6,14 +6,21 @@ import { getUsers } from '../utils/api'
 const Home = () => {
   const [users, setUsers] = useState([])
   const [redir, setRedir] = useState(false)
-  const [selectUser, setSelectUser] = useState(false)
   const { setCurrentUser } = useContext(UserContext)
+  const [selectUser, setSelectUser] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setLoading(true)
     getUsers().then((users) => {
       setUsers(users)
+      setLoading(false)
     })
   }, [])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
 
   const handleChange = (event) => {
     setCurrentUser(event.target.value)
@@ -30,8 +37,8 @@ const Home = () => {
         className='UserSelector'
         defaultValue={'defaultUser'}
       >
-        <option key="defaultUser" value="defaultUser" disabled >
-          users:
+        <option key="defaultUser" value="defaultUser" disabled>
+          USERS
         </option>
         {users.map((user) => {
           return (
