@@ -13,8 +13,8 @@ const Home = () => {
   useEffect(() => {
     setLoading(true)
     getUsers().then((users) => {
-      setUsers(users)
       setLoading(false)
+      setUsers(users)
     })
   }, [])
 
