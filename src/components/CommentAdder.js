@@ -10,24 +10,27 @@ const CommentAdder = ({ commentAdded }) => {
 
   const getComment = (event) => setNewComment(event.target.value)
 
-  const postComment = () => {
-    postCommentToReviewById(id, newComment, currentUser).then(() => {
-      commentAdded()
-      setNewComment('')
-    })
+  const postComment = (event) => {
+    event.preventDefault()
+    if (newComment.length > 0) {
+      postCommentToReviewById(id, newComment, currentUser).then(() => {
+        commentAdded()
+        setNewComment('')
+      })
+    }
   }
 
   return (
     <div className="CommentAdder">
-      <textarea
-        placeholder="Write your comment here..."
-        value={newComment}
-        onChange={getComment}
-      />{' '}
-      <br></br>
-      <button type="submit" onClick={postComment}>
-        Post comment
-      </button>
+      <form onSubmit={postComment}>
+        <textarea
+          placeholder="Write your comment here..."
+          value={newComment}
+          onChange={getComment}
+        />{' '}
+        <br></br>
+        <button type="submit">Post</button>
+      </form>
       Logged in as <b>{currentUser}</b>
     </div>
   )
