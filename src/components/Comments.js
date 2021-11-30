@@ -10,10 +10,11 @@ const Comments = () => {
   const { id } = useParams()
   const { currentUser } = useContext(UserContext)
   const [comments, setComments] = useState([])
+  const [addedComment, setAddedComment] = useState(0)
   const [loading, setLoading] = useState(true)
   const [err, setErr] = useState(null)
 
-  const updateComments = () => {
+  useEffect(() => {
     setLoading(true)
     getCommentsByReviewId(id)
       .then((comments) => {
@@ -24,11 +25,7 @@ const Comments = () => {
         setLoading(false)
         setErr(err.response)
       })
-  }
-
-  useEffect(() => {
-    updateComments()
-  }, [id]) // eslint-disable-line
+  }, [id, addedComment])
 
   const deleteComment = (commentId) => {
     setLoading(true)
@@ -77,7 +74,7 @@ const Comments = () => {
             </div>
           )
         })}
-        <CommentAdder commentAdded={updateComments} />
+        <CommentAdder setAddedComment={setAddedComment} />
       </span>
     </>
   )

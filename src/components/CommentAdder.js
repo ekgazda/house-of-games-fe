@@ -3,7 +3,7 @@ import { useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
 
-const CommentAdder = ({ commentAdded }) => {
+const CommentAdder = ({ setAddedComment }) => {
   const { id } = useParams()
   const { currentUser } = useContext(UserContext)
   const [newComment, setNewComment] = useState('')
@@ -12,12 +12,10 @@ const CommentAdder = ({ commentAdded }) => {
 
   const postComment = (event) => {
     event.preventDefault()
-    if (newComment.length > 0) {
       postCommentToReviewById(id, newComment, currentUser).then(() => {
-        commentAdded()
+        setAddedComment(prevComm => prevComm + 1)
         setNewComment('')
       })
-    }
   }
 
   return (
@@ -27,6 +25,7 @@ const CommentAdder = ({ commentAdded }) => {
           placeholder="Write your comment here..."
           value={newComment}
           onChange={getComment}
+          required
         />{' '}
         <br></br>
         <button type="submit">Post</button>
