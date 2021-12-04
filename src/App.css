@@ -6,9 +6,6 @@ body {
   text-align: center;
   font-family: 'Roboto', sans-serif;
   font-size: 13.5px;
-  grid-template-columns: 100%;
-  grid-template-rows: min-content min-content auto;
-  grid-template-areas: 'header' 'nav' 'main';
   margin-bottom: 40px;
 }
 
@@ -21,8 +18,6 @@ body {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  margin-bottom: 20px;
-  grid-area: header;
 }
 
 .App-link {
@@ -38,13 +33,17 @@ body {
 }
 
 .UserSelector {
- color: rgb(125, 125, 125);
- font-style: italic;
- font-family: 'Roboto', sans-serif;
+  color: rgb(125, 125, 125);
+  font-style: italic;
+  font-family: 'Roboto', sans-serif;
 }
 
 .Nav {
-  grid-area: nav;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Nav_link {
@@ -60,12 +59,6 @@ body {
 
 .Nav_link:hover {
   background-color: rgb(172, 170, 170);
-  border-radius: 10px;
-  padding: 5px;
-  margin: 10px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
 }
 
 .UserProfile {
@@ -119,63 +112,39 @@ body {
 li {
   list-style-type: none;
   line-height: 1.8;
-  font-size: 14px
+  font-size: 14px;
 }
 
-.Categories {
-  text-align: auto;
-  margin: 70px 30px 30px 30px;
+.Sort {
+  text-align: center;
+  margin: 30px 0px 0px 0px;
 }
 
-.Categories_link {
+.Sort_text {
+  color: rgb(77, 77, 77);
+  padding: 2px;
+  font-weight: bold;
+}
+
+.Sort_btns {
   text-decoration: none;
   color: rgb(108, 108, 108);
-  font-size: 12.5px;
-  line-height: 1.5;
-  padding: 12px;
-  text-transform:uppercase;
+  font-size: 13px;
+  padding: 1.5px;
+  text-transform: uppercase;
+  background: none;
+  margin-bottom: 10px;
 }
 
-.Categories_link:hover, .Categories_link.active {
+.Sort_btns:hover,
+.Sort_btns.active {
   text-decoration: none;
-  color:rgb(31, 31, 31);
-  font-size: 12.5px;
-}
-
-.sortBy {
-  font-size: 12.5px;
-}
-
-.Sort_link {
-  text-decoration: none;
-  color: rgb(108, 108, 108);
-  font-size: 12.5px;
-  line-height: 1.5;
-  padding: 12px;
-  text-transform:uppercase;
-}
-
-.Sort_link:hover, .Sort_link.active {
-  text-decoration: none;
-  color:rgb(31, 31, 31);
-  font-size: 12.5px;
-  font-weight: 410;
-}
-
-.Order_link {
-  text-decoration: none;
-  color: rgb(108, 108, 108);
-  font-size: 12.5px;
-  line-height: 1.5;
-  padding: 12px;
-  text-transform:uppercase;
-}
-
-.Order_link:hover, .Order_link.active {
-  text-decoration: none;
-  color:rgb(0, 0, 0);
-  font-size: 12.5px;
-  font-weight: 410;
+  color: rgb(75, 75, 75);
+  font-size: 13px;
+  font-weight: bold;
+  padding: 1.5px;
+  background: none;
+  margin-bottom: 10px;
 }
 
 .SingleReview {

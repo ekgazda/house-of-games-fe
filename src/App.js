@@ -8,9 +8,7 @@ import BadPath from './components/BadPath'
 import Home from './components/Home'
 import UserProfile from './components/UserProfile.js'
 import Reviews from './components/Reviews'
-import SingleCategory from './components/SingleCategory'
 import SingleReview from './components/SingleReview'
-import SortReviews from './components/SortReviews'
 
 const App = () => {
   const [reviews, setReviews] = useState([])
@@ -43,15 +41,7 @@ const App = () => {
               path="/my-account"
               element={<UserProfile reviews={reviews} />}
             />
-            <Route path="/reviews" element={<Reviews reviews={reviews} />} />
-            <Route
-              path="/reviews/categories/:slug"
-              element={<SingleCategory />}
-            />
-            <Route
-              path="/reviews/sortby/:sortByParam/:orderParam"
-              element={<SortReviews />}
-            />
+            <Route path="/reviews" element={<Reviews />} />
             <Route path="/reviews/:id" element={<SingleReview />} />
           </Routes>
         </div>

@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import Nav from './Nav'
-import Categories from './Categories'
-import ReviewCard from './ReviewCard'
+import { useSearchParams } from 'react-router-dom'
 import { getSortedReviews } from '../utils/api'
 import ErrorPage from './ErrorPage'
+import ReviewCard from './ReviewCard'
+import Nav from './Nav'
 
-const SortReviews = () => {
-  const [sortedReviews, setSortedReviews] = useState([])
+const SortReviews = ({ categories }) => {
+  const [category, setCategory] = useState('')
   const [sortBy, setSortBy] = useState('created_at')
   const [order, setOrder] = useState('desc')
+  const [sortParams, setSortParams] = useSearchParams()
+  const [sortedReviews, setSortedReviews] = useState([])
   const [loading, setLoading] = useState(true)
   const [err, setErr] = useState(null)
 
@@ -17,7 +18,7 @@ const SortReviews = () => {
 
   useEffect(() => {
     setLoading(true)
-    getSortedReviews(sortBy, order)
+    getSortedReviews(category, sortBy, order)
       .then((reviews) => {
         setLoading(false)
         setSortedReviews(reviews)
@@ -26,20 +27,36 @@ const SortReviews = () => {
         setLoading(false)
         setErr(err.response)
       })
-  }, []) // eslint-disable-line
+  }, [category, sortBy, order])
 
-  if (loading) {
-    return <p>Loading...</p>
-  }
-
-  if (err) {
-    return <ErrorPage err={err} />
+  const updateCategory = (newSlug) => {
+    setLoading(true)
+    setCategory(newSlug)
+    setSortParams({
+      category: newSlug,
+      sortBy: sortBy,
+      order: order,
+    })
+    getSortedReviews(newSlug, sortBy, order)
+      .then((reviews) => {
+        setLoading(false)
+        setSortedReviews(reviews)
+      })
+      .catch((err) => {
+        setLoading(false)
+        setErr(err.response)
+      })
   }
 
   const updateSortBy = (newSortBy) => {
     setLoading(true)
     setSortBy(newSortBy)
-    getSortedReviews(newSortBy, order)
+    setSortParams({
+      category: category,
+      sortBy: newSortBy,
+      order: order,
+    })
+    getSortedReviews(category, newSortBy, order)
       .then((reviews) => {
         setLoading(false)
         setSortedReviews(reviews)
@@ -53,7 +70,12 @@ const SortReviews = () => {
   const updateOrder = (newOrder) => {
     setLoading(true)
     setOrder(newOrder)
-    getSortedReviews(sortBy, newOrder)
+    setSortParams({
+      category: category,
+      sortBy: sortBy,
+      order: newOrder,
+    })
+    getSortedReviews(category, sortBy, newOrder)
       .then((reviews) => {
         setLoading(false)
         setSortedReviews(reviews)
@@ -64,39 +86,52 @@ const SortReviews = () => {
       })
   }
 
+  if (loading) return <p>Loading...</p>
+  if (err) return <ErrorPage err={err} />
+
   return (
     <>
       <Nav />
-      <Categories />
-      <div className="sortBy">
-        {' '}
-        Sort by:
+      <div className="Sort">
+        <div className="Sort_text">filter by category</div>
+        <>
+          {categories.map((slug) => {
+            return (
+              <button
+                key={slug}
+                onClick={() => updateCategory(slug)}
+                className={`Sort_btns ${category === slug ? 'active' : ''}`}
+              >
+                <>{slug}</>
+              </button>
+            )
+          })}
+        </>
+        <div className="Sort_text">sort by</div>
         {sortByOptions.map((option) => (
-          <Link
+          <button
             onClick={() => updateSortBy(option)}
-            to={`/reviews/sortby/${option}/${order}`}
             key={option}
-            className={`Sort_link ${sortBy === option ? 'active' : ''}`}
+            className={`Sort_btns ${sortBy === option ? 'active' : ''}`}
           >
-            {option}
-          </Link>
+            {option.split('_').join(' ')}
+          </button>
         ))}
-      </div>
-      <div>
-        <Link
-          onClick={() => updateOrder('asc')}
-          to={`/reviews/sortby/${sortBy}/asc`}
-          className={`Order_link ${order === 'asc' && 'active'}`}
-        >
-          asc
-        </Link>
-        <Link
-          onClick={() => updateOrder('desc')}
-          to={`/reviews/sortby/${sortBy}/desc`}
-          className={`Order_link ${order === 'desc' && 'active'}`}
-        >
-          desc
-        </Link>
+        <div>
+          <div className="Sort_text">order</div>
+          <button
+            onClick={() => updateOrder('asc')}
+            className={`Sort_btns ${order === 'asc' ? 'active' : ''}`}
+          >
+            asc
+          </button>
+          <button
+            onClick={() => updateOrder('desc')}
+            className={`Sort_btns ${order === 'desc' ? 'active' : ''}`}
+          >
+            desc
+          </button>
+        </div>
       </div>
       <div className="Reviews">
         {sortedReviews.map((review) => {
