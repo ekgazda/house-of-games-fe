@@ -11,39 +11,28 @@ const Comments = () => {
   const { currentUser } = useContext(UserContext)
   const [comments, setComments] = useState([])
   const [addedComment, setAddedComment] = useState(0)
-  const [loading, setLoading] = useState(true)
   const [err, setErr] = useState(null)
 
   useEffect(() => {
-    setLoading(true)
     getCommentsByReviewId(id)
       .then((comments) => {
-        setLoading(false)
         setComments(comments)
       })
       .catch((err) => {
-        setLoading(false)
         setErr(err.response)
       })
   }, [id, addedComment])
 
   const deleteComment = (commentId) => {
-    setLoading(true)
     deleteCommentById(commentId)
       .then((res) => {
-        setLoading(false)
         setComments((prevComm) => {
           return prevComm.filter((comment) => comment.comment_id !== commentId)
         })
       })
       .catch((err) => {
-        setLoading(false)
         setErr(err.response)
       })
-  }
-
-  if (loading) {
-    return <p>Loading...</p>
   }
 
   if (err) {

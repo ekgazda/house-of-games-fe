@@ -9,6 +9,7 @@ import Home from './components/Home'
 import UserProfile from './components/UserProfile.js'
 import Reviews from './components/Reviews'
 import SingleReview from './components/SingleReview'
+import Nav from './components/Nav'
 
 const App = () => {
   const [reviews, setReviews] = useState([])
@@ -33,6 +34,7 @@ const App = () => {
           <header className="App-header">
             <h2>House of Games</h2>
           </header>
+          <Nav />
           <Routes>
             <Route path="*" element={<BadPath />} />
             <Route path="/" element={<Home />} />

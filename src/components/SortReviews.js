@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom'
 import { getSortedReviews } from '../utils/api'
 import ErrorPage from './ErrorPage'
 import ReviewCard from './ReviewCard'
-import Nav from './Nav'
 
 const SortReviews = ({ categories }) => {
   const [category, setCategory] = useState('')
@@ -11,26 +10,21 @@ const SortReviews = ({ categories }) => {
   const [order, setOrder] = useState('desc')
   const [sortParams, setSortParams] = useSearchParams()
   const [sortedReviews, setSortedReviews] = useState([])
-  const [loading, setLoading] = useState(true)
   const [err, setErr] = useState(null)
 
   const sortByOptions = ['created_at', 'comment_count', 'votes']
 
   useEffect(() => {
-    setLoading(true)
     getSortedReviews(category, sortBy, order)
       .then((reviews) => {
-        setLoading(false)
         setSortedReviews(reviews)
       })
       .catch((err) => {
-        setLoading(false)
         setErr(err.response)
       })
   }, [category, sortBy, order])
 
   const updateCategory = (newSlug) => {
-    setLoading(true)
     setCategory(newSlug)
     setSortParams({
       category: newSlug,
@@ -39,17 +33,14 @@ const SortReviews = ({ categories }) => {
     })
     getSortedReviews(newSlug, sortBy, order)
       .then((reviews) => {
-        setLoading(false)
         setSortedReviews(reviews)
       })
       .catch((err) => {
-        setLoading(false)
         setErr(err.response)
       })
   }
 
   const updateSortBy = (newSortBy) => {
-    setLoading(true)
     setSortBy(newSortBy)
     setSortParams({
       category: category,
@@ -58,17 +49,14 @@ const SortReviews = ({ categories }) => {
     })
     getSortedReviews(category, newSortBy, order)
       .then((reviews) => {
-        setLoading(false)
         setSortedReviews(reviews)
       })
       .catch((err) => {
-        setLoading(false)
         setErr(err.response)
       })
   }
 
   const updateOrder = (newOrder) => {
-    setLoading(true)
     setOrder(newOrder)
     setSortParams({
       category: category,
@@ -77,21 +65,17 @@ const SortReviews = ({ categories }) => {
     })
     getSortedReviews(category, sortBy, newOrder)
       .then((reviews) => {
-        setLoading(false)
         setSortedReviews(reviews)
       })
       .catch((err) => {
-        setLoading(false)
         setErr(err.response)
       })
   }
 
-  if (loading) return <p>Loading...</p>
   if (err) return <ErrorPage err={err} />
 
   return (
     <>
-      <Nav />
       <div className="Sort">
         <div className="Sort_text">filter by category</div>
         <>

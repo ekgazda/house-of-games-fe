@@ -2,7 +2,6 @@ import { getReviewById } from '../utils/api'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
-import Nav from './Nav'
 import Comments from './Comments'
 import Voter from './Voter'
 import ErrorPage from './ErrorPage'
@@ -36,7 +35,6 @@ const SingleReview = () => {
 
   return (
     <>
-      <Nav />
       <div className="SingleReview">
         <p>
           <b id="reviewTitle">{review.title}</b>
