@@ -1,6 +1,6 @@
 ## Eniko's House of Games
 
-This is my Northcoders frontend project, a social games content rating and discussion website.\
+A social games content rating and discussion website.\
 Check out the hosted version here: https://eg-house-of-games.netlify.app/
 
 ### Project summary
