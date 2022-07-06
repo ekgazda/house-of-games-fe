@@ -8,6 +8,7 @@ const SortReviews = ({ categories }) => {
   const [category, setCategory] = useState('')
   const [sortBy, setSortBy] = useState('created_at')
   const [order, setOrder] = useState('desc')
+  // eslint-disable-next-line no-unused-vars
   const [sortParams, setSortParams] = useSearchParams()
   const [sortedReviews, setSortedReviews] = useState([])
   const [err, setErr] = useState(null)
