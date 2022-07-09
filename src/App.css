@@ -29,7 +29,7 @@ body {
 }
 
 .Home {
-  margin-top: 70px;
+  margin-top: 30px;
 }
 
 .UserSelector {
@@ -62,7 +62,7 @@ body {
 }
 
 .UserProfile {
-  margin-top: 70px;
+  margin-top: 30px;
 }
 
 .Avatar {
@@ -149,7 +149,7 @@ li {
 
 .SingleReview {
   display: flex;
-  padding: 60px 10px 10px 10px;
+  padding: 30px 10px 10px 10px;
   justify-content: center;
   flex-direction: column;
   max-width: 700px;
