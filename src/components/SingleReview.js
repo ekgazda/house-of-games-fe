@@ -1,6 +1,8 @@
-import { getReviewById } from '../utils/api'
-import { useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+import { UserContext } from '../contexts/UserContext'
+import { getReviewById } from '../utils/api'
 import moment from 'moment'
 import Comments from './Comments'
 import Voter from './Voter'
@@ -9,6 +11,7 @@ import ErrorPage from './ErrorPage'
 const SingleReview = () => {
   const { id } = useParams()
   const [review, setReview] = useState([])
+  const { currentUser } = useContext(UserContext)
   const [loading, setLoading] = useState(true)
   const [err, setErr] = useState(null)
 
@@ -25,13 +28,9 @@ const SingleReview = () => {
       })
   }, [id])
 
-  if (err) {
-    return <ErrorPage err={err} />
-  }
-
-  if (loading) {
-    return <p>Loading...</p>
-  }
+  if (loading) return <p>Loading...</p>
+  if (err) return <ErrorPage err={err} />
+  if (!currentUser) return <Navigate to={'/home'} replace />
 
   return (
     <>
